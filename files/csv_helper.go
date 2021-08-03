@@ -56,12 +56,19 @@ func (csvFile *CSVFile) GetLiteraryItems() (*models.LiteraryItems, error){
 	}
 	defer csvFile.closeFile()
 
+	isHeader := true
 	items := models.LiteraryItems{}
 	for {
 		item, err := csvFile.getLiteraryItem()
 		if err != nil {
 			break // assume end of file, in which case no problem
 		}
+
+		if isHeader {
+			isHeader = false
+			continue
+		}
+
 		items = append(items, *item)
 	}
 
@@ -87,11 +94,17 @@ func (csvFile CSVFile) GetAuthors() (*models.Authors, error){
 	}
 	defer csvFile.closeFile()
 
+	isHeader := true
 	authors := models.Authors{}
 	for {
 		author, err := csvFile.getAuthor()
 		if err != nil {
 			break // assume end of file, in which case no problem
+		}
+
+		if isHeader {
+			isHeader = false
+			continue
 		}
 		authors = append(authors, *author)
 	}
