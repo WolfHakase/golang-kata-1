@@ -6,3 +6,12 @@ type Magazine struct {
 	authors []string
 	publishedAt string
 }
+
+func (magazine Magazine) MapToLiteraryItem() LiteraryItem{
+	return LiteraryItem{
+		title:   magazine.title,
+		isbn:    magazine.isbn,
+		authors: magazine.authors,
+		other:   magazine.publishedAt,
+	}
+}

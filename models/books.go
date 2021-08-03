@@ -9,4 +9,12 @@ type Book struct {
 	description string
 }
 
+func (book Book) MapToLiteraryItem() LiteraryItem{
+	return LiteraryItem{
+		title:   book.title,
+		isbn:    book.isbn,
+		authors: book.authors,
+		other:   book.description,
+	}
+}
 
