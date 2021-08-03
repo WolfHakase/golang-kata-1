@@ -1,6 +1,6 @@
 package models
 
-type book struct {
+type Book struct {
 	title string
 	isbn string
 	authors []string

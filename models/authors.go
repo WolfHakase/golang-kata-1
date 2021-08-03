@@ -1,6 +1,6 @@
 package models
 
-type author struct {
+type Author struct {
 	email string
 	firstname string
 	lastname string
