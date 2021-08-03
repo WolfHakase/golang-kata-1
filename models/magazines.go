@@ -1,5 +1,16 @@
 package models
 
+type Magazines []Magazine
+
+func (magazines Magazines) MapToLiteraryItems() LiteraryItems {
+	items := LiteraryItems{}
+	for _, magazine := range magazines{
+		item := magazine.MapToLiteraryItem()
+		items = append(items, item)
+	}
+	return items
+}
+
 type Magazine struct {
 	title string
 	isbn string
