@@ -29,12 +29,16 @@ func (items LiteraryItems) PrintTableHeader(){
 	fmt.Print("Title, ISBN, Authors, Other info")
 }
 
-func (items LiteraryItems) PrintSortedByTitle() {
-	sort.Sort(items)
+func (items LiteraryItems) Print(){
 	items.PrintTableHeader()
 	for _, item := range items {
 		item.Print()
 	}
+}
+
+func (items LiteraryItems) PrintSortedByTitle() {
+	sort.Sort(items)
+	items.Print()
 }
 
 func (items LiteraryItems) FindByISBN(isbn string) (item *LiteraryItem, err error) {
