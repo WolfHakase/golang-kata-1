@@ -26,7 +26,7 @@ func (items LiteraryItems) Swap(i, j int) {
 }
 
 func (items LiteraryItems) PrintTableHeader(){
-	fmt.Print("Title, ISBN, Authors, Other info")
+	fmt.Println("Title, ISBN, Authors, Other info")
 }
 
 func (items LiteraryItems) Print(){
