@@ -71,6 +71,29 @@ type LiteraryItem struct {
 	other   string
 }
 
+func (item LiteraryItem) SetValues(title string, isbn string, authors []string, other string) {
+	item.title = title
+	item.isbn = isbn
+	item.authors = authors
+	item.other = other
+}
+
+func (item LiteraryItem) SetTitle(title string){
+	item.title = title
+}
+
+func (item LiteraryItem) SetISBN(isbn string){
+	item.isbn = isbn
+}
+
+func (item LiteraryItem) SetAuthors(authors []string){
+	item.authors = authors
+}
+
+func (item LiteraryItem) SetOther(other string){
+	item.other = other
+}
+
 func (item LiteraryItem) Print() {
 	authorsEmails := strings.Join(item.authors, ",")
 	fmt.Printf("%s, %s, [%s], %s\n", item.title, item.isbn, authorsEmails, item.other)
