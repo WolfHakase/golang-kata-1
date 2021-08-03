@@ -35,7 +35,7 @@ func (csvFile CSVFile) readLine() ([]string, error) {
 	return csvFile.reader.Read()
 }
 
-func (csvFile CSVFile) GetLiteraryItem() (*models.LiteraryItem, error) {
+func (csvFile CSVFile) getLiteraryItem() (*models.LiteraryItem, error) {
 	line, err := csvFile.readLine()
 	if err != nil {
 		return nil, err
@@ -57,7 +57,7 @@ func (csvFile CSVFile) GetLiteraryItems() (*models.LiteraryItems, error){
 
 	items := models.LiteraryItems{}
 	for {
-		item, err := csvFile.GetLiteraryItem()
+		item, err := csvFile.getLiteraryItem()
 		if err != nil {
 			break // assume end of file, in which case no problem
 		}
@@ -67,7 +67,7 @@ func (csvFile CSVFile) GetLiteraryItems() (*models.LiteraryItems, error){
 	return &items, nil
 }
 
-func (csvFile CSVFile) GetAuthor() (*models.Author, error) {
+func (csvFile CSVFile) getAuthor() (*models.Author, error) {
 	line, err := csvFile.readLine()
 	if err != nil {
 		return nil, err
@@ -88,7 +88,7 @@ func (csvFile CSVFile) GetAuthors() (*models.Authors, error){
 
 	authors := models.Authors{}
 	for {
-		author, err := csvFile.GetAuthor()
+		author, err := csvFile.getAuthor()
 		if err != nil {
 			break // assume end of file, in which case no problem
 		}
