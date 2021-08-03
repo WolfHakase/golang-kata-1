@@ -25,12 +25,12 @@ func (items LiteraryItems) Swap(i, j int) {
 	items[i], items[j] = items[j], items[i]
 }
 
-func (items LiteraryItems) PrintTableHeader(){
-	fmt.Print("Title, ISBN, Authors, Other info")
+func (items LiteraryItems) printTableHeader(){
+	fmt.Println("Title, ISBN, Authors, Other info")
 }
 
 func (items LiteraryItems) Print(){
-	items.PrintTableHeader()
+	items.printTableHeader()
 	for _, item := range items {
 		item.Print()
 	}
@@ -69,6 +69,13 @@ type LiteraryItem struct {
 	isbn    string
 	authors []string
 	other   string
+}
+
+func (item *LiteraryItem) SetValues(title string, isbn string, authors []string, other string) {
+	item.title = title
+	item.isbn = isbn
+	item.authors = authors
+	item.other = other
 }
 
 func (item LiteraryItem) Print() {
