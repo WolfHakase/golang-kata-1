@@ -42,8 +42,7 @@ func printItemsForAuthor(authorEmail string) error {
 
 	items, err := literaryItems.FindByAuthorsEmail(authorEmail)
 	if err != nil {
-		fmt.Println(err.Error())
-		return
+		return nil
 	}
 
 	items.PrintTableHeader()
