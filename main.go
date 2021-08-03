@@ -22,7 +22,7 @@ func main() {
 		fmt.Printf("Could not print items, because: %s\n", err.Error())
 	}
 
-	isbnSlice := []string{"4545-8558-3232", "2215-0012-5487", "1313-4545-8875"}
+	isbnSlice := []string{"4545-8558-3232", "2215-0012-5487", "1313-4545-8875", "not-exists"}
 	for _, isbn := range isbnSlice {
 		fmt.Printf("Print a book with isbn %s:\n", isbn)
 		err = printItemForISBN(isbn)
@@ -31,7 +31,9 @@ func main() {
 		}
 	}
 
-	authorsEmails := []string{"null-ferdinand@echocat.org", "null-rabe@echocat.org", "null-walter@echocat.org"}
+	authorsEmails := []string{
+		"null-ferdinand@echocat.org", "null-rabe@echocat.org", "null-walter@echocat.org", "not-exist@echocat.org",
+	}
 	for _, email := range authorsEmails {
 		fmt.Printf("Print a book with author %s:\n", email)
 		err = printItemsForAuthor(email)
@@ -109,10 +111,9 @@ func printItemsForAuthor(authorEmail string) error {
 
 	items, err := literaryItems.FindByAuthorsEmail(authorEmail)
 	if err != nil {
-		return nil
+		return err
 	}
 
-	items.PrintTableHeader()
 	items.Print()
 	return nil
 }
