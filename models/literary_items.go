@@ -42,13 +42,18 @@ func (items LiteraryItems) FindByISBN(isbn string) (item *LiteraryItem, err erro
 	return nil, errors.New("literary item with ISBN not found")
 }
 
-func (items LiteraryItems) FindByAuthorsEmail(authorEmail string) (item *LiteraryItem, err error) {
+func (items LiteraryItems) FindByAuthorsEmail(authorEmail string) (item *LiteraryItems, err error) {
+	itemsForAuthor := LiteraryItems{}
 	for _, item := range items {
 		if helpers.Contains(item.authors, authorEmail) {
-			return &item, nil
+			 itemsForAuthor = append(itemsForAuthor, item)
 		}
 	}
-	return nil, errors.New("literary item with author not found")
+
+	if len(itemsForAuthor) == 0 {
+		return nil, errors.New("literary item with author not found")
+	}
+	return &itemsForAuthor, nil
 }
 
 type LiteraryItem struct {
