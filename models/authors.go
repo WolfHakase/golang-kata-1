@@ -13,4 +13,3 @@ type Author struct {
 func (author Author) Print() {
 	fmt.Printf("%s, %s, %s\n", author.email, author.firstname, author.lastname)
 }
-
