@@ -1,7 +1,13 @@
 package models
 
+import "fmt"
+
 type Author struct {
-	email string
+	email     string
 	firstname string
-	lastname string
+	lastname  string
+}
+
+func (author Author) Print() {
+	fmt.Printf("%s, %s, %s\n", author.email, author.firstname, author.lastname)
 }
