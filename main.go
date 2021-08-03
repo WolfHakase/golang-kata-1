@@ -3,13 +3,47 @@ package main
 import (
 	"errors"
 	"fmt"
+	"github.com/echocat/golang-kata-1/v1/helpers"
 	"github.com/echocat/golang-kata-1/v1/models"
 )
 
 var literaryItems models.LiteraryItems = nil
+var authors models.Authors = nil
 
 func main() {
 	fmt.Println(welcomeMessage())
+}
+
+func readAuthors(){
+	csvAuthors := helpers.CSVFile{Name: "resources/authors.csv"}
+	authorsFromFile, err := csvAuthors.GetAuthors()
+
+	if err != nil {
+		fmt.Printf("Could not read authors, because: %s\n", err.Error())
+		return
+	}
+
+	authors = *authorsFromFile
+}
+
+func readLiteraryItems() {
+	csvBooks := helpers.CSVFile{Name: "resources/books.csv"}
+	booksFromFile, err := csvBooks.GetLiteraryItems()
+
+	if err != nil {
+		fmt.Printf("Could not read books, because: %s\n", err.Error())
+		return
+	}
+
+	csvMagazine := helpers.CSVFile{Name: "resources/magazines.csv"}
+	magazinesFromFile, err := csvMagazine.GetLiteraryItems()
+
+	if err != nil {
+		fmt.Printf("Could not read magazines, because: %s\n", err.Error())
+		return
+	}
+
+	literaryItems = append(*booksFromFile, *magazinesFromFile...)
 }
 
 func isInstantiatedLiteraryItems() error {
