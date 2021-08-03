@@ -10,7 +10,7 @@ type Author struct {
 	lastname  string
 }
 
-func (author Author) SetValues(email, firstname, lastname string) {
+func (author *Author) SetValues(email, firstname, lastname string) {
  	author.email = email
  	author.firstname = firstname
  	author.lastname = lastname
