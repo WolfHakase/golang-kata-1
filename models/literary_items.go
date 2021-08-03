@@ -25,9 +25,13 @@ func (items LiteraryItems) Swap(i, j int) {
 	items[i], items[j] = items[j], items[i]
 }
 
+func (items LiteraryItems) PrintTableHeader(){
+	fmt.Print("Title, ISBN, Authors, Other info")
+}
+
 func (items LiteraryItems) PrintSortedByTitle() {
 	sort.Sort(items)
-	fmt.Print("Title, ISBN, Authors, Other info")
+	items.PrintTableHeader()
 	for _, item := range items {
 		item.Print()
 	}
